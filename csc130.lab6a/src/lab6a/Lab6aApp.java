@@ -121,7 +121,8 @@ public class Lab6aApp {
 		BestBuyProduct temp = new BestBuyProduct(key, 0, null, null, null, null);
 		System.out.println("Searching for product " + key);
 		if (ulist.contains(temp)) {
-			System.out.print("Product " + key + " located at index position: " + ulist.indexOf(temp));
+			temp = ulist.get(ulist.indexOf(temp));
+			System.out.print("Product " + temp.getName() + " located at index position: " + ulist.indexOf(temp));
 			if (ulist.indexOf(temp) != ulist.lastIndexOf(temp)) {
 				System.out.println(" and " + ulist.lastIndexOf(temp));
 			} else {
@@ -140,8 +141,9 @@ public class Lab6aApp {
 		BestBuyProduct temp = new BestBuyProduct(key, 0, null, null, null, null);
 		System.out.println("Removing product " + key);
 		if (ulist.contains(temp)) {
+			temp = ulist.get(ulist.indexOf(temp));
 			ulist.remove(temp);
-			System.out.println("Product " + key + " removed from list");
+			System.out.println("Product " + temp.getName() + " removed from list");
 			System.out.println(ulist + "\n");
 		} else {
 			System.out.println("Product " + key + " not found in the list\n");
@@ -153,10 +155,16 @@ public class Lab6aApp {
 	 * @param ulist the list to look within
 	 */
 	public static void find(String str, ArrayList<BestBuyProduct> ulist) {
+		String output = "";
 		for (int i = 0; i < ulist.getSize(); i++) {
 			if (ulist.get(i).getName().contains(str)) {
-				System.out.println(ulist.get(i));
+				output += ulist.get(i);
 			}
+		}
+		if (output.length() > 0) {
+			System.out.println(output);
+		} else {
+			System.out.println("No product contains " + str + " were found.");
 		}
 	}
 
