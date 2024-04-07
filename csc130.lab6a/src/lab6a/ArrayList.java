@@ -1,5 +1,17 @@
 package lab6a;
 
+/**
+ * <p>
+ * Title: ArrayList class
+ * </p>
+ * 
+ * <p>
+ * Description: This class implements UnorderedList class to create a list with
+ * array, and implements add, remove, and search functions.
+ * </p>
+ * 
+ * @author Chunbo Cheng
+ */
 public class ArrayList<T> implements UnorderedList<T> {
 	/**
 	 * The list - generic array of items
@@ -104,11 +116,22 @@ public class ArrayList<T> implements UnorderedList<T> {
 		return remove(index);
 	}
 
+	/**
+	 * Determines whether or not an item is in the list
+	 * 
+	 * @return <i>true</i> if the list contains the item; <i>false</i> otherwise
+	 */
 	@Override
 	public boolean contains(T item) {
 		return indexOf(item) >= 0;
 	}
 
+	/**
+	 * Removes and returns item at specified index
+	 * 
+	 * @param index the specified index of item to be removed
+	 * @return the removed item
+	 */
 	public T remove(int index) {
 		if (index < 0 || index >= numItems)
 			return null;
@@ -150,10 +173,7 @@ public class ArrayList<T> implements UnorderedList<T> {
 	 * @return a String containing the items in the list
 	 */
 	public String toString() {
-		String str = new String("[");
-		for (int i = 0; i < numItems; i++)
-			str += data[i] + (i < numItems - 1 ? ", " : "");
-		return str + "]";
+		return "The list contains " + numItems + " items";
 	}
 
 	/**
@@ -187,23 +207,27 @@ public class ArrayList<T> implements UnorderedList<T> {
 		data = (T[]) new Object[data.length];
 		System.gc();
 	}
+
 	/**
 	 * Returns the index of the last appearance of an element.
+	 * 
 	 * @param item the item to look for.
 	 * @return the index of the last appearance of the item.
 	 */
 	@Override
 	public int lastIndexOf(T item) {
 		int idx = -1;
-		for(int i = 0; i < numItems; i++)
-			if(data[i].equals(item))
+		for (int i = 0; i < numItems; i++)
+			if (data[i].equals(item))
 				idx = i;
 		return idx;
 	}
+
 	/**
 	 * Returns the item that got replaced.
+	 * 
 	 * @param index index of the element to replace.
-	 * @param item item to be stored at the specified index.
+	 * @param item  item to be stored at the specified index.
 	 * @return the item that got replaced.
 	 */
 	@Override
@@ -215,8 +239,10 @@ public class ArrayList<T> implements UnorderedList<T> {
 		data[index] = item;
 		return replaced;
 	}
+
 	/**
 	 * Returns the item that got replaced.
+	 * 
 	 * @param oldItem the element to be replaced.
 	 * @param newItem the item to be replace with the oldItem.
 	 * @return the item that got replaced.

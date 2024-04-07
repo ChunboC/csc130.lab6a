@@ -1,5 +1,17 @@
 package lab6a;
 
+/**
+ * <p>
+ * Title: BestBuyProduct
+ * </p>
+ * 
+ * <p>
+ * Description: This class implements Comparable class, it creates best buy
+ * product objects and stores each object's information
+ * </p>
+ * 
+ * @author Chunbo Cheng
+ */
 class BestBuyProduct implements Comparable<BestBuyProduct> {
 	long sku;
 	double price;
@@ -45,7 +57,7 @@ class BestBuyProduct implements Comparable<BestBuyProduct> {
 	 * @return a String containing the current values of the product
 	 */
 	public String toString() {
-		return sku + "," + price  + ",\""+ name + "\"," + upc + ",\"" + manufacturer + "\"," + model + "\n";
+		return sku + "," + price + ",\"" + name + "\"," + upc + ",\"" + manufacturer + "\"," + model + "\n";
 	}
 
 	/**
@@ -55,7 +67,7 @@ class BestBuyProduct implements Comparable<BestBuyProduct> {
 	 * @return true if the two objects contain the same sku false otherwise
 	 */
 	public boolean equals(Object otherItem) {
-		if(otherItem instanceof BestBuyProduct) {
+		if (otherItem instanceof BestBuyProduct) {
 			BestBuyProduct temp = (BestBuyProduct) otherItem;
 			return (this.sku == temp.sku);
 		}
