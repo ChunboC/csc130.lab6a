@@ -19,20 +19,20 @@ public class Lab6aApp {
 		BestBuyProduct[] products = getData();
 		for (BestBuyProduct product : products)
 			list2.add(product);
-		//System.out.println(list2);
+		// System.out.println(list2);
 		System.out.println(list2 + "\n");
-		//System.out.println(list2.get(0));
-		//System.out.println(list2.get(list2.getSize() / 2).getSku());
-		
+		// System.out.println(list2.get(0));
+		// System.out.println(list2.get(list2.getSize() / 2).getSku());
+
 		// testing search
 		testSearch(1088665, list2); // in the middle of the list
-		testSearch(344097, list2);	// not in the list
+		testSearch(344097, list2); // not in the list
 		testSearch(list2.get(0).getSku(), list2); // in the beginning
-		testSearch(list2.get(list2.getSize() - 1).getSku(), list2);	// at the end
+		testSearch(list2.get(list2.getSize() - 1).getSku(), list2); // at the end
 		testSearch(43900, list1); // in an empty list
 		// testing remove
 		testRemove(1196144, list2); // in the middle
-		testRemove(344197, list2);	// not in the list
+		testRemove(344197, list2); // not in the list
 		testRemove(list2.get(0).getSku(), list2); // in the beginning
 		testRemove(list2.get(list2.getSize() - 1).getSku(), list2); // at the end
 		list1.add(list2.get(list2.getSize() / 2)); // add the middle product in list1
@@ -40,12 +40,12 @@ public class Lab6aApp {
 		testRemove(344197, list1); // empty list
 		// testing find
 		find("Apple", list2);
-		
 		/*
 		 * Question 17: when I commented out equals() in BestBuyProduct class, I did not
-		 * get an error message because there is an equals() method in the
-		 * Comparable interface. However, the output changed, and no matter what
-		 * parameter I use, the method would always return false
+		 * get an error message because there is an equals() method in the Object class.
+		 * However, the output changed, and no matter what parameter I use, the method
+		 * would always return false because the equals() method in object class
+		 * requires two objects to be exactly the same to return true.
 		 */
 	}
 
@@ -78,7 +78,7 @@ public class Lab6aApp {
 			rs = stmt.executeQuery("select count (*) AS totalRecords from products");
 			int totalRecords = rs.getInt("totalRecords");
 			System.out.println("Records: " + totalRecords + "\n");
-			
+
 			System.out.println("The first 5 items in the list:\n");
 			rs = stmt.executeQuery("SELECT * FROM products;");
 			if (rs != null) {
@@ -113,8 +113,10 @@ public class Lab6aApp {
 	}
 
 	/**
-	 * testSearch - utilizes indexOf(), lastIndexOf(), and contains() methods from ArrayList class to test them
-	 * @param key the product id to search for
+	 * testSearch - utilizes indexOf(), lastIndexOf(), and contains() methods from
+	 * ArrayList class to test them
+	 * 
+	 * @param key   the product id to search for
 	 * @param ulist the product list to search within
 	 */
 	public static void testSearch(long key, ArrayList<BestBuyProduct> ulist) {
@@ -122,7 +124,7 @@ public class Lab6aApp {
 		System.out.println("Searching for product " + key);
 		if (ulist.contains(temp)) {
 			temp = ulist.get(ulist.indexOf(temp));
-			System.out.print("Product " + temp.getName() + " located at index position: " + ulist.indexOf(temp));
+			System.out.print("Product " + key + " located at index position: " + ulist.indexOf(temp));
 			if (ulist.indexOf(temp) != ulist.lastIndexOf(temp)) {
 				System.out.println(" and " + ulist.lastIndexOf(temp));
 			} else {
@@ -132,9 +134,11 @@ public class Lab6aApp {
 			System.out.println("Product " + key + " was not found in the list\n");
 		}
 	}
+
 	/**
 	 * testRemove - utilizes remove() method from ArrayList class to test it
-	 * @param key the product id to be removed
+	 * 
+	 * @param key   the product id to be removed
 	 * @param ulist the list to remove items from
 	 */
 	public static void testRemove(long key, ArrayList<BestBuyProduct> ulist) {
@@ -143,21 +147,23 @@ public class Lab6aApp {
 		if (ulist.contains(temp)) {
 			temp = ulist.get(ulist.indexOf(temp));
 			ulist.remove(temp);
-			System.out.println("Product " + temp.getName() + " removed from list");
+			System.out.println("Product " + key + " removed from list");
 			System.out.println(ulist + "\n");
 		} else {
 			System.out.println("Product " + key + " not found in the list\n");
 		}
 	}
+
 	/**
 	 * find - prints out all items containing certain words in the name
-	 * @param str the keyword to look for
+	 * 
+	 * @param str   the keyword to look for
 	 * @param ulist the list to look within
 	 */
 	public static void find(String str, ArrayList<BestBuyProduct> ulist) {
 		String output = "";
 		for (int i = 0; i < ulist.getSize(); i++) {
-			if (ulist.get(i).getName().contains(str)) {
+			if (ulist.get(i).toString().contains(str)) {
 				output += ulist.get(i);
 			}
 		}
